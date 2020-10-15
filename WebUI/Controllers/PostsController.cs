@@ -47,7 +47,6 @@ namespace WebUI.Controllers
             return View(new PostRequestViewModel());
         }
 
-
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public IActionResult Create(PostRequestViewModel model)
@@ -64,6 +63,28 @@ namespace WebUI.Controllers
                 _context.Posts.Add(post);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
+
+            }
+            return View(model);
+        }
+
+        [HttpPut]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Update(PostRequestViewModel model)
+        {
+           
+            if (ModelState.IsValid)
+            {
+                var mustUpdate = _context.Posts.Find(model.Id);
+                if(mustUpdate != null)
+                {
+                    mustUpdate.AuthorId = model.AuthorId;
+                    mustUpdate.Content = model.Content;
+                    mustUpdate.CreatedAt  = DateTime.Now;
+                    mustUpdate.Status   = model.Status;
+                    _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+                }
 
             }
             return View(model);
