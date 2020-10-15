@@ -21,6 +21,7 @@ namespace WebUI.Controllers
         public IActionResult Index()
         {
             return View();
+            //this comment is in master
         }
 
         public IActionResult Privacy()
