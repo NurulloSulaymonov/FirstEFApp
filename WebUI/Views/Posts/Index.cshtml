@@ -1,0 +1,28 @@
+﻿@model List<PostsListViewModel>
+<h1 class="text-center text-success">List of Post</h1>
+<a href="/Posts/Create">Create New Post</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Content</th>
+            <th scope="col">Status</th>
+            <th scope="col">Author</th>
+            <th scope="col">CreatedAt</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>@item.Content</td>
+            <td>@item.Status</td>
+            <td>@item.Author</td>
+            <td><a href="#">Edit</a> <a href="#">Delete</a></td>
+        </tr>
+        }
+           </tbody>
+</table>
+
+
